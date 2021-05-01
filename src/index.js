@@ -12,7 +12,7 @@
 import { createStore, bindActionCreators, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import { inc, dec, rndAsync } from './redux/actions';
+import { inc, dec, rndAsync, themeToggle } from './redux/actionCreators';
 import rootReducer from './rootReducer';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -20,19 +20,25 @@ const { dispatch } = store;
 
 const counterHolder = document.querySelector('.counter-holder');
 
+console.log(store.getState());
+document.querySelector('body').classList.add('light');
+
 store.subscribe(() => {
   console.log('state', store.getState());
-  counterHolder.innerHTML = store.getState();
+  counterHolder.innerHTML = store.getState().counter;
+
+  document.querySelector('body').classList = null;
+  document.querySelector('body').classList.add(store.getState().theme.theme);
 });
 
-let counter = 0;
-counterHolder.textContent = counter;
+counterHolder.textContent = store.getState().counter;
 
-const { incDispatch, decDispatch, rndAsyncDispatch } = bindActionCreators(
+const { incDispatch, decDispatch, rndAsyncDispatch, themeDispathc } = bindActionCreators(
   {
     incDispatch: inc,
     decDispatch: dec,
     rndAsyncDispatch: rndAsync,
+    themeDispathc: themeToggle,
   },
   dispatch,
 );
@@ -40,3 +46,5 @@ const { incDispatch, decDispatch, rndAsyncDispatch } = bindActionCreators(
 document.querySelector('.dec').addEventListener('click', decDispatch);
 document.querySelector('.inc').addEventListener('click', incDispatch);
 document.querySelector('.rnd').addEventListener('click', rndAsyncDispatch);
+
+document.querySelector('.theme-toggler__button').addEventListener('click', themeDispathc);
