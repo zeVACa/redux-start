@@ -1,9 +1,11 @@
+import { DEC, INC, RND_ASYNC, THEME_TOGGLE } from './types';
+
 export const dec = () => {
-  return { type: 'DEC' };
+  return { type: DEC };
 };
 
 export const inc = () => {
-  return { type: 'INC' };
+  return { type: INC };
 };
 
 export const rndAsync = () => {
@@ -13,11 +15,11 @@ export const rndAsync = () => {
 
   return function (dispatch) {
     setTimeout(() => {
-      dispatch({ type: 'RND_ASYNC', payload: randomIntFromInterval(1, 100) });
+      dispatch({ type: RND_ASYNC, payload: randomIntFromInterval(1, 100) });
     }, 1000);
   };
 };
 
 export const themeToggle = () => {
-  return { type: 'THEME_TOGGLE', payload: 'light' };
+  return { type: THEME_TOGGLE, payload: 'light' };
 };
