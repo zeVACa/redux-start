@@ -1,9 +1,7 @@
+import CounterPanel from './components/CounterPanel';
+
 function App() {
-  return (
-    <div className="App">
-      <h1>app</h1>
-    </div>
-  );
+  return <CounterPanel />;
 }
 
 export default App;
