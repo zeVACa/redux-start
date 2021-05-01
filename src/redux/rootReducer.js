@@ -15,12 +15,12 @@ const counterReducer = (state = 0, action) => {
   }
 };
 
-const themeReducer = (state = { themeNam: 'light' }, action) => {
+const themeReducer = (state = { themeName: 'light' }, action) => {
   switch (action.type) {
     case THEME_TOGGLE:
-      return state.themeNam === 'light'
-        ? { ...state, theme: 'dark' }
-        : { ...state, theme: 'light' };
+      return state.themeName === 'light'
+        ? { ...state, themeName: 'dark' }
+        : { ...state, themeName: 'light' };
 
     default:
       return state;

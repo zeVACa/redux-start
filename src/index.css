@@ -1,8 +1,12 @@
-body.light {
+div.app {
+  height: 100vh;
+}
+
+div.app.light {
   background: #eeeeee;
 }
 
-body.dark {
+.app.dark {
   background-color: #333333;
   color: white;
 }
